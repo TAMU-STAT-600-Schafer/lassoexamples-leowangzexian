@@ -6,9 +6,9 @@ softthresh <- function(x, lambda){
   } else {
     if (x < - lambda) {
       return(x + lambda)
+    } else {
+        return(0)
     }
-  } else {
-    return(0)
   }
 }
 
