@@ -42,6 +42,11 @@ beta_start = rep(0, 2) # starting point 1
 
 # [ToDo] Create a vector to store objective function values, and calculate the value of f(beta) at the beginning
 
+# create storage vectors
+# for loop
+# update beta1
+# update beta2
+# calculate objective
 
 for (i in 1:niter){
   # [ToDo] Update of beta1
