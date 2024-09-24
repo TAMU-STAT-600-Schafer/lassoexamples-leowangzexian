@@ -20,10 +20,14 @@ Y = beta0 + X %*% beta + sigma * rnorm(n)
 #############################################################
 # [ToDo] Center both X and Y 
 
-
+Ycentered = Y - mean(Y)
+Xcentered = t(t(X) - colMeans(X))
 
 # [ToDo] Scale centered X (so that n^{-1}X^tX has 1s on the diagonal)
 
+normsX = diag(crossprod(Xcentered))/n
+Xtilde = Xcentered %*% diag(1/sqrt(normsX))
+# colMeans(Xtilde^2)/n
 
 # Coordinate descent implementation for the case p = 2
 #############################################################
@@ -36,13 +40,17 @@ beta_start = rep(1, 2) # starting point
 
 
 # Apply coordinate descent on centered and scaled Xscaled, and centered Ycentered
-out = coordinateLasso(Xscaled, Ycentered, beta_start, lambda, niter = niter)
+out = coordinateLasso(Xtilde, Ycentered, beta_start, lambda, niter = niter)
 
 # plot(0:niter, out$fobj_vec)
-out2 = coordinateLasso2(Xscaled, Ycentered, beta_start, lambda, niter = niter)
+out2 = coordinateLasso2(Xtilde, Ycentered, beta_start, lambda, niter = niter)
 
 
 # [ToDo] Perform back-centering and scaling to get intercept beta0 and vector of coefficients beta on the original scale
-
+beta = out$beta %*% diag(sqrt(normsX))
 
 # Intercept according to the formula
+
+beta0_lasso = mean(Y) - sum(colMeans(X) * beta)
+
+
