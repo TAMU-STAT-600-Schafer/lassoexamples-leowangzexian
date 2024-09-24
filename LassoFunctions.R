@@ -43,13 +43,15 @@ coordinateLasso <- function(X, Y, beta_start, lambda, niter = 50){
   
   # [ToDo] Fill in the iterations for coordinate-descent
   for (i in 2:(niter + 1)){
-    # [ToDo] Update of beta1
+    # update beta1
+    beta[1] <- softthresh((1/n) * crossprod(X[ , 1], (Y - X[ , 2] * beta[2])), lambda)
     
-    # [ToDo] Update of beta2
-
+    # update beta2
+    beta[2] <- softthresh((1/n) * crossprod(X[ , 2], (Y - X[ , 1] * beta[1])), lambda)
     
-    # [ToDo] Calculate updated value of f(beta)
-
+    # calculate objective
+    fobj_vec[i] <- lassoobj(X, Y, beta, lambda)
+    
   }
   
   # Return final beta after niter iterations, and the whole vector of objective values

@@ -24,6 +24,10 @@ norm2 = as.numeric(crossprod(X[ , 2])/n) # should be 1
 ############################################################
 # [ToDo] Create Xscaled from X that satisfies the above
 
+Xscaled = X
+Xscaled[, 1] = Xscaled[, 1] / sqrt(norm1)
+Xscaled[, 2] = Xscaled[, 2] / sqrt(norm2)
+# apply(Xscaled, 2, \(col) col/sqrt(crossprod(col)/n))
 
 
 # Coordinate descent implementation for the case p = 2, same as before but with scaled X
