@@ -17,7 +17,8 @@ Y = beta0 + X %*% beta + rnorm(n, sd = sigma)
 
 # Split the data into K = 2 folds
 # [ToDo] Create idfold vector of length n indicating the fold id, should have 1 or 2 in each position
-
+K = 2
+idfolds = sample(K, sample = n, replace = TRUE) # non-equal fold sizes, head(idfolds), table(idfolds)
 
 # For loop over folds and lambdas
 ##########################################
