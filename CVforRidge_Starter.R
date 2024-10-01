@@ -65,6 +65,6 @@ cvm = colMeans(cv_folds)
 cvse = apply(cv_folds, 2, FUN = sd)
 
 # Plot the output from above
-plot(lambda_seq, cvm, col = "red", ylim = c(40, 140))
+plot(lambda_seq, cvm, col = "red", ylim = c(20, 170))
 lines(lambda_seq, cvm + cvse)
 lines(lambda_seq, cvm - cvse)
