@@ -61,7 +61,8 @@ for (fold in 1:K){
 }
 
 # [ToDo] get cvm and cvse from cv_folds
-
+cvm = colMeans(cv_folds)
+cvse = apply(cv_folds, 2, FUN = sd)
 
 # Plot the output from above
 plot(lambda_seq, cvm, col = "red", ylim = c(40, 140))
